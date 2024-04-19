@@ -1,0 +1,25 @@
+//version de proto
+syntax = "proto3";
+
+//Especifico de Java
+//Paquete donde genera código a partir de proto
+option java_package = "com.proto.saludo";
+
+//Cadena nombre (Atributo)
+//Cliente envía objeto tipo "SaludoRequest" al servidor
+message SaludoRequest {
+    string nombre = 1;
+}
+
+//Servidor regresará "SaludoResponse" que contendrá un único atributo "resultado"
+//Servidor envía el objeto del tipo "SaludoResponse" al cliente.
+message SaludoResponse{
+    string resultado = 1;
+}
+
+//Nombre del servicio SaludoService
+//Nombre de la función "saludo()" que se puede llamar
+//Función toma entrada de tipo SaludoRequest y devuelve salido tipo SaludoResponse
+service SaludoService{
+    rpc saludo(SaludoRequest) returns (SaludoResponse);
+}
