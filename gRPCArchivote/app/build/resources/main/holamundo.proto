@@ -1,0 +1,24 @@
+//Sintax representa la versión de Protobuf
+syntax = "proto3";
+
+//Especifico de java | Genera código a partir de .proto
+option java_package = "com.proto.saludo";
+
+//Contiene atributo "nombre" cadena, cliente envía SaludoRequest
+message SaludoRequest{
+    string nombre = 1;
+}
+
+//Servidor devuelve SaludoResponse con "resultado"
+message SaludoResponse{
+    string resultado = 1;
+}
+
+//Bloque nombre de servicio "SaludoService" | Nombre función "saludo()" se puede llamar, saludo() toma entrada SaludoRequest
+service SaludoService{
+    rpc saludo(SaludoRequest) returns (SaludoResponse);
+    //Nuevo servicio de stream
+    rpc saludoStream(SaludoRequest) returns (stream SaludoResponse);
+    //Archivote
+    rpc saludoArchivoStream(SaludoRequest) returns (stream SaludoResponse);
+}
