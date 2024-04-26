@@ -1,0 +1,19 @@
+//Protobuf versión
+syntax = "proto3";
+
+//Cliente envía objeto tipo DownloadFileRequest a servidor
+message DownloadFileRequest{
+    string nombre = 1;
+}
+
+//Servidor envía DataChunkResponse a cliente
+message DataChunkResponse{
+    bytes data = 1;
+}
+
+//Bloque representa nombre servicio "AudioService"
+//downloadAudio() toma entrada de tipo "DownloadFileRequest" y devuelve salida "DataChunkResponse"
+service AudioService{
+    rpc downloadAudio (DownloadFileRequest) returns (stream DataChunkResponse);
+}
+
